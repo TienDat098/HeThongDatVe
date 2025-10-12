@@ -1,0 +1,69 @@
+/* Basic styles for movie site */
+:root{
+  --accent:#e53935;
+  --muted:#6b6b6b;
+  --bg:#f8fafc;
+}
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:#222}
+.topbar{background:#fff;padding:12px 24px;border-bottom:1px solid #eee}
+.topbar .logo{font-weight:700;color:var(--accent);text-decoration:none}
+.topbar nav{display:flex;align-items:center;justify-content:space-between}
+.topbar nav ul{list-style:none;padding:0;margin:0;display:flex;gap:16px}
+.topbar nav a{color:#333;text-decoration:none}
+.site-main{padding:24px}
+/* Top swiper */
+.swiper-container, .top-swiper{width:100%;padding:12px 0}
+.top-swiper .swiper-slide{display:flex;align-items:center;justify-content:center;position:relative}
+.top-swiper img{width:220px;height:320px;object-fit:cover;border-radius:10px;box-shadow:0 12px 30px rgba(16,24,40,0.12);transition:transform .28s}
+.top-swiper .swiper-slide-active img{transform:scale(1.04)}
+.carousel-overlay{position:absolute;left:0;right:0;bottom:12px;text-align:center;color:#fff;text-shadow:0 6px 18px rgba(0,0,0,0.6);font-weight:700}
+.section-title{font-size:20px;margin:18px 0 12px;color:#222;text-align:center}
+/* Movie card list */
+.movie-list{padding:8px 0}
+.movie-card{background:#fff;border-radius:10px;padding:0;width:170px;box-shadow:0 14px 40px rgba(16,24,40,0.12);text-align:left;position:relative;overflow:hidden}
+.movie-card .poster-wrap{position:relative}
+.movie-card img{width:100%;height:250px;object-fit:cover;display:block}
+.movie-card .info{padding:10px}
+.movie-card h3{font-size:14px;margin:0 0 6px;color:#111;min-height:36px}
+.movie-card .meta{font-size:12px;color:var(--muted)}
+.movie-card .buy{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:700;margin-top:8px}
+.movie-card:hover{transform:translateY(-6px)}
+
+/* small gradient overlay at bottom of poster for text */
+.poster-gradient{position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%);border-radius:0 0 6px 6px}
+
+/* Ribbon */
+.ribbon{position:absolute;left:12px;top:12px;background:var(--accent);color:#fff;padding:6px 10px;border-radius:4px;font-weight:700;font-size:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08)}
+.rating{position:absolute;right:12px;top:12px;background:#fff;padding:6px 8px;border-radius:20px;font-weight:700;color:#2e7d32;border:1px solid #e8f5e9}
+.list-swiper .swiper-slide{display:flex;justify-content:center}
+/* Responsive container */
+.container{max-width:1200px;margin:0 auto}
+/* Footer */
+footer{padding:20px;text-align:center;color:var(--muted);font-size:13px}
+
+/* small helpers */
+.badge{display:inline-block;background:#fff3f2;color:var(--accent);padding:4px 8px;border-radius:12px;font-size:12px;border:1px solid #ffd6d3}
+
+@media (max-width:600px){
+  .movie-card img{height:160px}
+}
+
+/* Theater filter layout */
+.theater-filter{display:flex;gap:16px;margin-top:28px}
+.theater-areas{background:#fff;padding:12px;border-radius:8px;flex:0 0 260px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+.theater-list{background:#fff;padding:12px;border-radius:8px;flex:1;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+.theater-item{padding:10px;border-bottom:1px solid #f1f1f1}
+.theater-item:last-child{border-bottom:0}
+
+/* responsive tweaks */
+@media (max-width:900px){
+  .top-swiper img{width:180px;height:260px}
+  .movie-card{width:150px}
+  .movie-card img{height:200px}
+}
+
+@media (max-width:600px){
+  .theater-filter{flex-direction:column}
+  .theater-areas{flex:unset}
+}
