@@ -1,69 +1,527 @@
-/* Basic styles for movie site */
-:root{
-  --accent:#e53935;
-  --muted:#6b6b6b;
-  --bg:#f8fafc;
-}
-*{box-sizing:border-box}
-body{font-family:Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:#222}
-.topbar{background:#fff;padding:12px 24px;border-bottom:1px solid #eee}
-.topbar .logo{font-weight:700;color:var(--accent);text-decoration:none}
-.topbar nav{display:flex;align-items:center;justify-content:space-between}
-.topbar nav ul{list-style:none;padding:0;margin:0;display:flex;gap:16px}
-.topbar nav a{color:#333;text-decoration:none}
-.site-main{padding:24px}
-/* Top swiper */
-.swiper-container, .top-swiper{width:100%;padding:12px 0}
-.top-swiper .swiper-slide{display:flex;align-items:center;justify-content:center;position:relative}
-.top-swiper img{width:220px;height:320px;object-fit:cover;border-radius:10px;box-shadow:0 12px 30px rgba(16,24,40,0.12);transition:transform .28s}
-.top-swiper .swiper-slide-active img{transform:scale(1.04)}
-.carousel-overlay{position:absolute;left:0;right:0;bottom:12px;text-align:center;color:#fff;text-shadow:0 6px 18px rgba(0,0,0,0.6);font-weight:700}
-.section-title{font-size:20px;margin:18px 0 12px;color:#222;text-align:center}
-/* Movie card list */
-.movie-list{padding:8px 0}
-.movie-card{background:#fff;border-radius:10px;padding:0;width:170px;box-shadow:0 14px 40px rgba(16,24,40,0.12);text-align:left;position:relative;overflow:hidden}
-.movie-card .poster-wrap{position:relative}
-.movie-card img{width:100%;height:250px;object-fit:cover;display:block}
-.movie-card .info{padding:10px}
-.movie-card h3{font-size:14px;margin:0 0 6px;color:#111;min-height:36px}
-.movie-card .meta{font-size:12px;color:var(--muted)}
-.movie-card .buy{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:700;margin-top:8px}
-.movie-card:hover{transform:translateY(-6px)}
-
-/* small gradient overlay at bottom of poster for text */
-.poster-gradient{position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%);border-radius:0 0 6px 6px}
-
-/* Ribbon */
-.ribbon{position:absolute;left:12px;top:12px;background:var(--accent);color:#fff;padding:6px 10px;border-radius:4px;font-weight:700;font-size:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08)}
-.rating{position:absolute;right:12px;top:12px;background:#fff;padding:6px 8px;border-radius:20px;font-weight:700;color:#2e7d32;border:1px solid #e8f5e9}
-.list-swiper .swiper-slide{display:flex;justify-content:center}
-/* Responsive container */
-.container{max-width:1200px;margin:0 auto}
-/* Footer */
-footer{padding:20px;text-align:center;color:var(--muted);font-size:13px}
-
-/* small helpers */
-.badge{display:inline-block;background:#fff3f2;color:var(--accent);padding:4px 8px;border-radius:12px;font-size:12px;border:1px solid #ffd6d3}
-
-@media (max-width:600px){
-  .movie-card img{height:160px}
+/* --- General & Reset --- */
+body {
+    background-color: #141414; /* Nền tối */
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
 }
 
-/* Theater filter layout */
-.theater-filter{display:flex;gap:16px;margin-top:28px}
-.theater-areas{background:#fff;padding:12px;border-radius:8px;flex:0 0 260px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
-.theater-list{background:#fff;padding:12px;border-radius:8px;flex:1;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
-.theater-item{padding:10px;border-bottom:1px solid #f1f1f1}
-.theater-item:last-child{border-bottom:0}
-
-/* responsive tweaks */
-@media (max-width:900px){
-  .top-swiper img{width:180px;height:260px}
-  .movie-card{width:150px}
-  .movie-card img{height:200px}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-@media (max-width:600px){
-  .theater-filter{flex-direction:column}
-  .theater-areas{flex:unset}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Header Styling --- */
+.site-header {
+    background: rgba(20, 20, 20, 0.8);
+    padding: 15px 0;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Hiệu ứng mờ kính */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e50914; /* Màu đỏ đặc trưng */
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #e5e5e5;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #e50914;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background: #222;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.search-form input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    outline: none;
+}
+
+.search-form button {
+    background: transparent;
+    border: none;
+    color: #999;
+    padding: 0 12px;
+    cursor: pointer;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid #555;
+}
+.btn-secondary:hover {
+    background-color: #333;
+}
+
+.btn-primary {
+    background-color: #e50914;
+}
+.btn-primary:hover {
+    background-color: #f40612;
+}
+
+
+/* --- Footer Styling --- */
+.site-footer {
+    background-color: #000;
+    color: #808080;
+    padding: 50px 0 0;
+    margin-top: 50px;
+    border-top: 1px solid #222;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.footer-column h4 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column a:hover {
+    color: #fff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    font-size: 20px;
+    color: #808080;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #e50914;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid #222;
+    font-size: 14px;
+}
+/* --- Page Layout: Main Column + Sidebar --- */
+.page-layout {
+    display: flex; /* Quan trọng: Kích hoạt chế độ Flexbox */
+    gap: 30px; /* Tạo khoảng cách 30px giữa 2 cột */
+    align-items: flex-start; /* Căn 2 cột theo phía trên */
+}
+
+.main-column {
+    flex: 1; /* Cho phép cột chính co giãn để chiếm hết không gian còn lại */
+    min-width: 0; /* Cần thiết để flexbox hoạt động đúng với slider */
+}
+
+.sidebar {
+    width: 300px; /* Cố định chiều rộng cột phụ là 300px */
+    flex-shrink: 0; /* Không cho phép cột phụ bị co lại */
+}
+
+/* --- Styling for Sidebar Card --- */
+.side-card {
+    background-color: #1a1a1a;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.side-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Khoảng cách giữa ảnh và chữ */
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2f2f2f;
+}
+
+.side-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.side-item img {
+    width: 60px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.side-item h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #e5e5e5;
+}
+/* --- FIX for Swiper inside Flexbox --- */
+.list-swiper {
+    width: 100%; /* Bắt buộc slider chiếm hết chiều rộng của cột cha (.main-column) */
+}
+/* ======================================================= */
+/* === STYLING CHO DROPDOWN MENU === */
+/* ======================================================= */
+
+/* Cần có để làm mốc cho menu con */
+.main-nav .dropdown {
+    position: relative; 
+}
+
+/* Icon mũi tên */
+.dropdown-toggle i {
+    margin-left: 5px;
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+/* Xoay mũi tên khi di chuột vào */
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+/* Menu con (ẩn mặc định) */
+.dropdown-menu {
+    /* Quan trọng nhất: Nhấc menu ra khỏi luồng trang */
+    position: absolute; 
+    top: 100%; /* Nằm ngay bên dưới mục "Phim" */
+    left: 0;
+
+    /* Các thuộc tính để ẩn menu */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); /* Hiệu ứng trượt nhẹ từ dưới lên */
+    transition: all 0.3s ease;
+
+    /* Styling cho menu */
+    background-color: #1a1a1a;
+    border: 1px solid #2f2f2f;
+    border-radius: 8px;
+    padding: 10px 0;
+    list-style: none;
+    min-width: 200px;
+    z-index: 1001; /* Đảm bảo menu nằm trên các nội dung khác */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Quan trọng: Hiển thị menu con khi di chuột vào thẻ <li> cha */
+.main-nav .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Các mục trong menu con */
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #ccc;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hiệu ứng khi di chuột vào từng mục */
+.dropdown-menu li a:hover {
+    background-color: #e50914; /* Màu đỏ chủ đạo */
+    color: #fff;
+}
+/* ======================================================= */
+/* === SỬA DROPDOWN HIỂN THỊ DỌC === */
+/* ======================================================= */
+
+.dropdown-menu {
+    /* Quan trọng: Bắt buộc các item bên trong phải xếp theo chiều dọc */
+    display: flex;
+    flex-direction: column;
+    
+    /* Căn lề các item về phía bên trái (tùy chọn) */
+    align-items: flex-start; 
+}
+
+.dropdown-menu li {
+    /* Đảm bảo mỗi mục chiếm trọn chiều rộng của menu */
+    width: 100%; 
+}
+
+/* ======================================================= */
+/* === STYLING CHO MEGA DROPDOWN (RẠP) === */
+/* ======================================================= */
+
+/* Định vị cho menu lớn */
+.mega-menu .dropdown-menu {
+    width: 500px; /* Độ rộng của menu */
+    max-width: 90vw; /* Tối đa 90% chiều rộng màn hình */
+    left: auto;
+    right: 0; /* Căn lề phải */
+    padding: 0;
+    overflow: hidden; /* Ẩn các phần thừa */
+}
+
+.cinema-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-bottom: 1px solid #444;
+}
+
+.cinema-dropdown-header .search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.cinema-dropdown-header .search-bar input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 5px;
+    outline: none;
+}
+
+.cinema-dropdown-header .city-selector {
+    background-color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.cinema-dropdown-list {
+    max-height: 60vh; /* Chiều cao tối đa, có thể cuộn */
+    overflow-y: auto; /* Thêm thanh cuộn khi cần */
+    padding: 15px;
+}
+
+/* Tùy chỉnh thanh cuộn */
+.cinema-dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+.cinema-dropdown-list::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
+.cinema-dropdown-list::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+}
+
+.cinema-group {
+    margin-bottom: 20px;
+}
+.cinema-group:last-child {
+    margin-bottom: 0;
+}
+
+.cinema-chain-name {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.cinema-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cinema-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.cinema-item:hover {
+    background-color: #2a2a2a;
+}
+
+.cinema-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.cinema-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 2px;
+}
+
+.cinema-name {
+    color: #fff;
+    font-weight: 500;
+}
+
+.cinema-address {
+    font-size: 13px;
+    color: #888;
+}
+
+.ticket-tag {
+    background-color: #3a5fcd; /* Màu xanh */
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+/* ======================================================= */
+/* === STYLING CHO DROPDOWN CHỌN THÀNH PHỐ === */
+/* ======================================================= */
+
+.city-selector-wrapper {
+    position: relative; /* Làm mốc để định vị danh sách con */
+}
+
+.city-selector-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.city-selector-button i {
+    transition: transform 0.3s ease;
+}
+
+/* Xoay icon mũi tên khi dropdown active */
+.city-selector-wrapper.active .city-selector-button i {
+    transform: rotate(180deg);
+}
+
+.city-dropdown-list {
+    position: absolute; /* Nhấc danh sách ra khỏi luồng trang */
+    top: calc(100% + 5px); /* Nằm ngay dưới nút bấm, cách 5px */
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Nền trắng như ảnh mẫu */
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    z-index: 1002;
+    max-height: 300px; /* Chiều cao tối đa, có thể cuộn */
+    overflow-y: auto;
+    
+    /* Mặc định ẩn đi */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* Hiển thị danh sách khi có class 'active' */
+.city-selector-wrapper.active .city-dropdown-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.city-dropdown-list ul {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+
+.city-dropdown-list a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.city-dropdown-list a:hover {
+    background-color: #f0f0f0;
 }
