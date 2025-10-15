@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows === 1) {
         $admin = $result->fetch_assoc();
         
-        // So sánh mật khẩu đã hash
-        if (password_verify($password, $admin['mat_khau'])) {
+        
+        if ($password === $admin['mat_khau']) {
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_id'] = $admin['id'];
             header('Location: dashboard.php');
