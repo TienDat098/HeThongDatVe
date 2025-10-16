@@ -17,6 +17,33 @@ $total_showtimes = $conn->query("SELECT COUNT(id) as total FROM LichChieu WHERE 
 // 4. Tổng số vé đã đặt
 $total_bookings = $conn->query("SELECT COUNT(id) as total FROM DatVe")->fetch_assoc()['total'];
 
+// === LẤY DỮ LIỆU CHO BIỂU ĐỒ DOANH THU 7 NGÀY QUA ===
+$sql_chart = "
+    SELECT 
+        DATE(ngay_dat) AS ngay, 
+        SUM(tong_tien) AS doanh_thu
+    FROM DatVe
+    WHERE 
+        trang_thai = 'da_dat' AND ngay_dat >= CURDATE() - INTERVAL 7 DAY
+    GROUP BY DATE(ngay_dat)
+    ORDER BY ngay ASC
+";
+$result_chart = $conn->query($sql_chart);
+
+$chart_labels = [];
+$chart_data = [];
+
+if ($result_chart->num_rows > 0) {
+    while ($row = $result_chart->fetch_assoc()) {
+        $chart_labels[] = date('d/m', strtotime($row['ngay']));
+        $chart_data[] = $row['doanh_thu'];
+    }
+}
+
+// Chuyển mảng PHP thành chuỗi JSON để JavaScript có thể đọc
+$chart_labels_json = json_encode($chart_labels);
+$chart_data_json = json_encode($chart_data);
+
 // 5. Lấy 5 đơn đặt vé mới nhất
 $latest_bookings_sql = "
     SELECT d.id, n.ho_ten, p.tieu_de, d.ngay_dat, d.tong_tien
@@ -67,6 +94,13 @@ $latest_bookings_result = $conn->query($latest_bookings_sql);
     </div>
 </div>
 
+</div> <div class="chart-container card">
+    <h2>Doanh thu 7 ngày qua</h2>
+    <div class="card-body">
+        <canvas id="revenueChart"></canvas>
+    </div>
+</div>
+
 <div class="recent-bookings">
     <h2>Đơn đặt vé mới nhất</h2>
     <table>
@@ -103,3 +137,48 @@ $latest_bookings_result = $conn->query($latest_bookings_sql);
 require_once 'templates/footer.php'; // Nhúng footer
 $conn->close();
 ?>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    
+    // Lấy dữ liệu từ PHP
+    const labels = <?php echo $chart_labels_json; ?>;
+    const data = <?php echo $chart_data_json; ?>;
+
+    new Chart(ctx, {
+        type: 'line', // Kiểu biểu đồ (line, bar, pie...)
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Doanh thu (VNĐ)',
+                data: data,
+                backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                borderColor: 'rgba(52, 152, 219, 1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.1 // Làm cho đường cong mượt hơn
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 20
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString('vi-VN') + 'đ'; // Format tiền tệ
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>

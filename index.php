@@ -2,6 +2,11 @@
 require_once 'core/db_connection.php'; 
 require_once 'templates/header.php';
 ?>
+    
+
+
+
+
 
 
 
