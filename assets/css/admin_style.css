@@ -171,10 +171,12 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     overflow: hidden; /* Giúp bo góc cho table bên trong */
 }
+/* Sửa lại .card-header để đẩy nút "Thêm" về bên phải */
 .card-header {
     padding: 15px 20px;
     border-bottom: 1px solid #eee;
-    display: flex; /* Sắp xếp các item bên trong */
+    background-color: #fff; /* Đảm bảo header có nền trắng */
+    display: flex;
     justify-content: flex-end; /* Đẩy nút "Thêm Mới" về bên phải */
     align-items: center;
 }
@@ -268,10 +270,12 @@ td img {
 /*  CSS CHO PHÂN TRANG (PAGINATION) === */
 
 
+/* Sửa lại .pagination để căn giữa và nằm ở dưới cùng */
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Căn giữa các nút 1, 2, 3... */
     padding: 20px;
+    border-top: 1px solid #eee; /* Thêm 1 vạch kẻ ngăn cách với bảng */
     gap: 5px;
 }
 
