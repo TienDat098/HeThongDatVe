@@ -1,8 +1,14 @@
+
 <?php
-session_start();
+// Chỉ bắt đầu session NẾU nó chưa được bắt đầu
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+<?php
 // "Người gác cổng": Kiểm tra xem admin đã đăng nhập chưa
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header('Location: login.php'); // Nếu chưa, đá về trang login
+    header('Location: ../dang_nhap.php');
     exit;
 }
 require_once '../config.php';

@@ -1,3 +1,9 @@
+<?php
+// Chỉ bắt đầu session NẾU nó chưa được bắt đầu
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <?php require_once __DIR__ . '/../config.php'; ?>
 <?php
 
@@ -151,9 +157,25 @@ $stmt->close();
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
                 <div class="auth-buttons">
-                    <a href="#" class="btn btn-secondary">Đăng Nhập</a>
-                    <a href="#" class="btn btn-primary">Đăng Ký</a>
-                </div>
+    <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
+        
+        <a href="<?php echo BASE_URL; ?>admin/dashboard.php" class="btn btn-secondary"><i class="fas fa-user-shield"></i> Trang Admin</a>
+        <a href="<?php echo BASE_URL; ?>doi_mat_khau.php" class="btn btn-secondary">Đổi Mật khẩu</a>
+        <a href="<?php echo BASE_URL; ?>dang_xuat.php" class="btn btn-primary">Đăng Xuất</a>
+
+    <?php elseif (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
+        
+        <a href="#" class="btn btn-secondary"><i class="fas fa-user"></i> <?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
+        <a href="<?php echo BASE_URL; ?>doi_mat_khau.php" class="btn btn-secondary">Đổi Mật khẩu</a>
+        <a href="<?php echo BASE_URL; ?>dang_xuat.php" class="btn btn-primary">Đăng Xuất</a>
+
+    <?php else: ?>
+
+        <a href="<?php echo BASE_URL; ?>dang_nhap.php" class="btn btn-secondary">Đăng Nhập</a>
+        <a href="<?php echo BASE_URL; ?>dang_ky.php" class="btn btn-primary">Đăng Ký</a>
+
+    <?php endif; ?>
+</div>
             </div>
         </div>
     </header>

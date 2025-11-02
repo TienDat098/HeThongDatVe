@@ -13,7 +13,7 @@
         <li><a href="quan_ly_cum_rap.php" class="<?php echo ($current_page == 'quan_ly_cum_rap.php') ? 'active' : ''; ?>"><i class="fas fa-industry"></i> Quản lý Cụm Rạp</a></li>
         <li><a href="quan_ly_rap_chieu.php" class="<?php echo ($current_page == 'quan_ly_rap_chieu.php') ? 'active' : ''; ?>"><i class="fas fa-building"></i> Quản lý Rạp Chiếu</a></li>
         <li><a href="quan_ly_phong_chieu.php" class="<?php echo ($current_page == 'quan_ly_phong_chieu.php') ? 'active' : ''; ?>"><i class="fas fa-door-closed"></i> Quản lý Phòng Chiếu</a></li>
-        <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+        <li><a href="../dang_xuat.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
     </ul>
 </aside>
 <main class="main-content">

@@ -14,15 +14,15 @@ a {
     text-decoration: none;
     color: inherit;
 }
-/* --- Header Styling --- */
+/* --- Header Styling (Theme Sáng - Đã sửa) --- */
 .site-header {
-    background: rgba(20, 20, 20, 0.8);
+    background: #ffffff; /* Sửa: Nền trắng cho header */
     padding: 15px 0;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid #eeeeee; /* Sửa: Viền xám nhạt */
     position: sticky;
     top: 0;
     z-index: 1000;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); Bỏ hiệu ứng mờ vì nền đặc */
 }
 .header-container {
     display: flex;
@@ -32,7 +32,7 @@ a {
 .logo {
     font-size: 24px;
     font-weight: 700;
-    color: #e50914;
+    color: #e50914; /* Giữ logo màu đỏ */
 }
 .main-nav ul {
     list-style: none;
@@ -45,13 +45,13 @@ a {
 .main-nav a {
     font-size: 16px;
     font-weight: 500;
-    color: #e5e5e5;
+    color: #333333; /* Sửa: Chữ màu đen/xám đậm */
     transition: color 0.3s ease;
     display: flex;
     align-items: center;
 }
 .main-nav a:hover {
-    color: #e50914;
+    color: #e50914; /* Giữ nguyên hiệu ứng hover */
 }
 .header-right {
     display: flex;
@@ -61,21 +61,21 @@ a {
 .search-form {
     display: flex;
     align-items: center;
-    background: #222;
+    background: #f4f4f4; /* Nền xám nhạt cho ô tìm kiếm (nổi bật trên nền trắng) */
     border-radius: 5px;
     overflow: hidden;
 }
 .search-form input {
     background: transparent;
     border: none;
-    color: #fff;
+    color: #333333; /* Sửa: Chữ trong ô tìm kiếm màu đen/xám đậm */
     padding: 8px 12px;
     outline: none;
 }
 .search-form button {
     background: transparent;
     border: none;
-    color: #999;
+    color: #777777; /* Sửa: Icon tìm kiếm màu xám */
     padding: 0 12px;
     cursor: pointer;
 }
@@ -91,13 +91,15 @@ a {
 }
 .btn-secondary {
     background-color: transparent;
-    border: 1px solid #555;
+    border: 1px solid #dddddd; /* Sửa: Viền xám có thể thấy */
+    color: #333333; /* Sửa: Chữ màu đen/xám đậm */
 }
 .btn-secondary:hover {
-    background-color: #333;
+    background-color: #f4f4f4;
 }
 .btn-primary {
     background-color: #e50914;
+    color: #ffffff; /* Đảm bảo chữ trắng trên nền đỏ */
 }
 .btn-primary:hover {
     background-color: #f40612;
@@ -132,8 +134,8 @@ a {
     visibility: hidden;
     transform: translateY(10px);
     transition: all 0.3s ease;
-    background-color: #1a1a1a;
-    border: 1px solid #2f2f2f;
+    background-color: #fff;
+    border: 1px solid #eee;
     border-radius: 8px;
     padding: 10px 0;
     list-style: none;
@@ -152,8 +154,8 @@ a {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .dropdown-menu li a:hover {
-    background-color: #e50914;
-    color: #fff;
+    background-color: #f4f4f4;
+    color: #e50914;
 }
 
 
@@ -171,15 +173,16 @@ a {
     align-items: center;
     gap: 10px;
     padding: 15px;
-    background-color: #2a2a2a;
-    border-bottom: 1px solid #444;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
 }
 
 .cinema-dropdown-header .search-bar {
     flex-grow: 1;
     display: flex;
     align-items: center;
-    background-color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 5px;
     padding: 0 10px;
 }
@@ -188,7 +191,7 @@ a {
     width: 100%;
     background: transparent;
     border: none;
-    color: #fff;
+    color: #333;
     padding: 10px 5px;
     outline: none;
 }
@@ -202,8 +205,8 @@ a {
 }
 
 .cinema-dropdown-list::-webkit-scrollbar { width: 6px; }
-.cinema-dropdown-list::-webkit-scrollbar-track { background: #2a2a2a; }
-.cinema-dropdown-list::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
+.cinema-dropdown-list::-webkit-scrollbar-track { background: #f4f4f4; }
+.cinema-dropdown-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
 
 .cinema-group {
     margin-bottom: 20px;
@@ -236,7 +239,7 @@ a {
 }
 
 .cinema-item:hover {
-    background-color: #2a2a2a;
+    background-color: #f4f4f4;
 }
 
 .cinema-logo {
@@ -254,7 +257,7 @@ a {
 }
 
 .cinema-name {
-    color: #fff;
+    color: #333;
     font-weight: 500;
 }
 
@@ -276,13 +279,13 @@ a {
     position: relative;
 }
 .city-selector-button {
-    background-color: #333;
-    color: #fff;
+    background-color: #f4f4f4;
+    color: #333;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     white-space: nowrap;
-    border: none;
+   border: 1px solid #ddd;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -378,21 +381,22 @@ a {
 .cinema-dropdown-list { max-height: 60vh; overflow-y: auto; }
 
 
-.dropdown-menu li a { padding: 10px 14px; color: #ddd; }
+.dropdown-menu li a { padding: 10px 14px; color: #333; }
 .city-dropdown-list a { padding: 8px 12px; color: #333; }
 .cinema-dropdown-list a { padding: 8px 12px; color: #ccc; }
 
 
 
-/*  STYLING CHO FOOTER  */
-
+/* ======================================================= */
+/* === STYLING CHO FOOTER (Theme Sáng - Đã sửa) === */
+/* ======================================================= */
 
 .site-footer {
-    background-color: #000;
-    color: #808080;
+    background-color: #f9f9f9; /* Nền footer xám rất nhạt */
+    color: #555; /* Sửa: Màu chữ mặc định (cho đoạn mô tả) */
     padding: 50px 0 0;
     margin-top: 50px;
-    border-top: 1px solid #222;
+    border-top: 1px solid #eee; /* Sửa: Viền xám nhạt, mảnh */
 }
 
 .footer-container {
@@ -402,13 +406,22 @@ a {
 }
 
 .footer-column .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e50914; /* Logo màu đỏ */
     margin-bottom: 15px; 
     display: inline-block; 
 }
 
+.footer-column p {
+    color: #555; /* Đảm bảo chữ mô tả rõ nét */
+}
+
 .footer-column h4 {
-    color: #fff;
-    font-size: 16px;
+    color: #aaa; /* Sửa: Tiêu đề cột màu xám mờ (như trong ảnh) */
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase; /* Viết hoa tiêu đề */
     margin-bottom: 20px;
     margin-top: 0; 
 }
@@ -423,8 +436,14 @@ a {
     margin-bottom: 10px;
 }
 
+/* Thêm quy tắc cho link trong footer */
+.footer-column a {
+    color: #555;
+    text-decoration: none;
+}
+
 .footer-column a:hover {
-    color: #fff;
+    color: #e50914; /* Sửa: Đổi màu link khi hover */
     text-decoration: underline; 
 }
 
@@ -435,7 +454,7 @@ a {
 
 .social-icons a {
     font-size: 20px;
-    color: #808080;
+    color: #555; /* Sửa: Icon màu xám đậm */
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -448,7 +467,131 @@ a {
     text-align: center;
     padding: 20px 0;
     margin-top: 40px;
-    border-top: 1px solid #222;
+    border-top: 1px solid #eee; /* Sửa: Viền xám nhạt */
     font-size: 14px;
+    color: #aaa; /* Sửa: Chữ copyright màu xám mờ */
 }
 
+/* ======================================================= */
+/* === STYLING CHO FORM ĐĂNG NHẬP / ĐĂNG KÝ (Theme Sáng) === */
+/* ======================================================= */
+
+.page-content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f4f7fa; /* Thêm một màu nền xám rất nhạt cho trang */
+}
+
+.login-register-form {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: #ffffff; /* Nền form màu trắng */
+    border: 1px solid #e0e0e0; /* Viền xám nhạt */
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05); /* Bóng mờ nhẹ nhàng */
+}
+
+.login-register-form h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333333; /* Sửa: Chữ màu đen */
+}
+
+.login-register-form p {
+    text-align: center;
+    color: #777777; /* Sửa: Chữ màu xám vừa */
+    margin-bottom: 25px;
+}
+
+.login-register-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-register-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555555; /* Sửa: Chữ màu xám đậm */
+}
+
+.login-register-form .form-group input {
+    width: 100%;
+    padding: 12px;
+    background: #f9f9f9; /* Sửa: Nền ô input xám nhạt */
+    border: 1px solid #dddddd; /* Sửa: Viền ô xám nhạt */
+    border-radius: 5px;
+    color: #333333; /* Sửa: Chữ bên trong ô input màu đen */
+    font-size: 16px;
+    box-sizing: border-box; 
+}
+
+/* Thêm hiệu ứng khi bấm vào ô input */
+.login-register-form .form-group input:focus {
+    border-color: #e50914; /* Viền chuyển sang màu đỏ */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.1);
+}
+
+.login-register-form .btn-block {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #e50914; /* Nút màu đỏ */
+    border: none;
+    color: #fff; /* Chữ trên nút màu trắng */
+    cursor: pointer;
+}
+
+.login-register-form .form-switch {
+    margin-top: 25px;
+    font-size: 14px;
+    text-align: center;
+    color: #777; /* Sửa: Chữ "Chưa có tài khoản?" màu xám */
+}
+
+.login-register-form .form-switch a {
+    color: #e50914; /* Link màu đỏ */
+    font-weight: bold;
+}
+
+/* Sửa lại màu cho thông báo lỗi/thành công */
+.error-message {
+    background-color: #fde8e8; /* Nền đỏ nhạt */
+    color: #a91f1f; /* Chữ đỏ đậm */
+    border: 1px solid #e50914;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.success-message {
+    background-color: #e8f5e9; /* Nền xanh nhạt */
+    color: #1e8e3e; /* Chữ xanh đậm */
+    border: 1px solid #2ecc71;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* ======================================================= */
+/* === SỬA LỖI LAYOUT TRANG NGẮN (STICKY FOOTER) === */
+/* ======================================================= */
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #fff; /* Nền trang màu TRẮNG */
+    color: #333; /* Chữ mặc định màu ĐEN */
+    
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1; /* Đẩy footer xuống */
+}
